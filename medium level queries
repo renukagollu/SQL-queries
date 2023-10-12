@@ -14,3 +14,49 @@ from patients where allergies='Penicillin' or allergies='Morphine'
 order by allergies asc, first_name,last_name
 
 ---------------------------------------------------------------------------------------------------------------------------
+--Show patient_id, diagnosis from admissions. Find patients admitted multiple times for the same diagnosis.
+
+SELECT
+  patient_id,
+  diagnosis
+FROM admissions
+GROUP BY
+  patient_id,
+  diagnosis
+HAVING COUNT(*) > 1;
+
+---------------------------------------------------------------------------------------------------------------------------
+--Show the city and the total number of patients in the city.
+Order from most to least patients and then by city name ascending.
+
+SELECT city,count (*) as num_patients
+from patients 
+group by city
+order by num_patients desc, city asc
+---------------------------------------------------------------------------------------------------------------------------
+--Show first name, last name and role of every person that is either patient or doctor.
+The roles are either "Patient" or "Doctor"
+
+SELECT first_name, last_name, 'Patient' as role FROM patients
+    union all
+select first_name, last_name, 'Doctor' as role from doctors;
+
+---------------------------------------------------------------------------------------------------------------------------
+--Show all allergies ordered by popularity. Remove NULL values from query.
+SELECT
+  allergies,
+  COUNT(*) AS total_diagnosis
+FROM patients
+WHERE
+  allergies IS NOT NULL
+GROUP BY allergies
+ORDER BY total_diagnosis DESC
+---------------------------------------------------------------------------------------------------------------------------
+--Show all patient's first_name, last_name, and birth_date who were born in the 1970s decade. Sort the list starting from the earliest birth_date.
+
+select  first_name,last_name,birth_date
+from patients 
+where year(birth_date)>= 1970 and year(birth_date)<1980
+order by birth_date asc
+
+---------------------------------------------------------------------------------------------------------------------------
