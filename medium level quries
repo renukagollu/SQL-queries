@@ -1,0 +1,16 @@
+--Show the total amount of male patients and the total amount of female patients in the patients table.
+  Display the two results in the same row.
+  
+SELECT
+(select count(*) from patients where gender='M') as male_count,
+(select count(*) from patients where gender='F') as female_count;
+
+------------------------------------------------------------------------------------------------------------------------------------------
+--Show first and last name, allergies from patients which have allergies to either 'Penicillin' or 'Morphine'.
+Show results ordered ascending by allergies then by first_name then by last_name.
+
+SELECT first_name,last_name,allergies 
+from patients where allergies='Penicillin' or allergies='Morphine'
+order by allergies asc, first_name,last_name
+
+---------------------------------------------------------------------------------------------------------------------------
