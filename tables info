@@ -9,3 +9,12 @@ primary key icon	province_id	CHAR(2)
 allergies	TEXT
 height	INT
 weight	INT
+
+----------------------------------------------------
+--- Table name : admissions----
+primary key icon	patient_id	INT
+admission_date	DATE
+discharge_date	DATE
+diagnosis	TEXT
+primary key icon	attending_doctor_id	INT
+
